@@ -20,11 +20,15 @@
             <a href="/">
                 <div>home</div>
             </a>
-            <a href="">
+            <a href="../login">
+
                 <div>login</div>
             </a>
-            <a href="../categories">
+            <a href="../admin">
                 <div>admin</div>
+            </a>
+            <a href="../profile">
+                <div>profile</div>
             </a>
 
         </div>

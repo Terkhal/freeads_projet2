@@ -27,6 +27,9 @@ use App\Http\Controllers\PictureController;
 Route::get('/', function () {
     return view('home');
 });
+Route::get('/profile', function () {
+    return view('profile.index');
+});
 
 Route::get('/admin', function () {
     return view('admin.index');
@@ -36,8 +39,8 @@ Route::resource('categories', CategoriesController::class);
 // Cosme route
 Route::resource('products', ProductController::class);
 // Cosme Picture Upload
-Route::get('picture_upload', [ PictureController::class, 'index' ]);
-Route::post('picture_upload', [ PictureController::class, 'store' ])->name('image.store');
+Route::get('picture_upload', [PictureController::class, 'index']);
+Route::post('picture_upload', [PictureController::class, 'store'])->name('image.store');
 
 
 
@@ -46,12 +49,12 @@ Route::post('picture_upload', [ PictureController::class, 'store' ])->name('imag
 
 //Seb route
 
-// Route::get('/', function () {
+Route::get('/', function () {
 
-    //     return view('welcome');
-    // })->name('home');
-    
-    
+    return view('home');
+})->name('home');
+
+
 Route::get('/login', [AuthManager::class, 'login'])->name('login');
 Route::post('/login', [AuthManager::class, 'loginPost'])->name('login.post');
 Route::get('/registration', [AuthManager::class, 'registration'])->name('registration');
