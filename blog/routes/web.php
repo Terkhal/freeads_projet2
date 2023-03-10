@@ -11,6 +11,9 @@ use App\Http\Controllers\FreeadsUserController;
 // COSME
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PictureController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\NewHomeController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -24,16 +27,10 @@ use App\Http\Controllers\PictureController;
 */
 
 // tutut
-Route::get('/', function () {
-    return view('home');
-});
-Route::get('/profile', function () {
-    return view('profile.index');
-});
+Route::get('home', [NewHomeController::class, 'show']);
 
-Route::get('/admin', function () {
-    return view('admin.index');
-});
+Route::resource('admin', AdminController::class);
+
 Route::resource('categories', CategoriesController::class);
 
 // Cosme route
@@ -53,6 +50,10 @@ Route::get('/', function () {
 
     return view('home');
 })->name('home');
+
+
+//         return view('welcome');
+//     })->name('home');
 
 
 Route::get('/login', [AuthManager::class, 'login'])->name('login');
