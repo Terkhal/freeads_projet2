@@ -15,12 +15,13 @@
         <div class="border">Role: @if ($user->admin == 1) admin @else Standard user @endif</div>
         <div class="border">id: {{session('user')->id}}</div>
 
-        <div class="border"><a href="{{ route('profile.edit',session('user')->id) }}">Edit profile</a></div>
+        <div><a class="waves-effect waves-light btn" href="{{ route('profile.edit',session('user')->id) }}">Edit profile</a></div>
 
 
     </div>
 
     <div style="display: flex; margin: auto; flex-direction: column;" class="card_container">
+        <div><a class="waves-effect waves-light btn" href="{{ route('profile.createprod') }}">Add product</a></div>
         @foreach($products as $product)
         @if(session('user')->id == $product->created_by )
         <div style="margin: auto; margin-bottom: 20px; width: 100%;" class="row">
@@ -43,6 +44,13 @@
                             </div>
                             <div style="padding: 5px 0;" class="card-content">
                                 <p>{{ $product->description }}</p>
+
+                                <form style="display: flex; justify-content: space-between;" action="{{ route('profile.destroyprod', $product->id) }}" method="Post">
+                                    <a style="margin:0 5;" class="waves-effect waves-light btn" href="{{ route('profile.editprod',$product->id) }}"> Edit </a>
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="waves-effect waves-light btn">Delete</button>
+                                </form>
                             </div>
                         </div>
                         <div>

@@ -8,16 +8,6 @@
 
 <container style="display:flex; justify-content:center; width:100%; margin-top:120px;">
 
-    <div style="position: fixed; left: 20px; top: 100px; z-index: 999;" class="admin_menu">
-
-        <div class="border">Name: {{session('user')->name}}</div>
-        <div class="border">email: {{session('user')->email}}</div>
-        <div class="border">Role: {{session('user')->admin}}</div>
-        <div class="border">id: {{session('user')->id}}</div>
-        <div class="border"><a href="{{ route('profile.edit',session('user')->id) }}">Edit profile</a></div>
-
-
-    </div>
 
     <div style="display: flex; margin: auto; flex-direction: column;" class="card_container">
 

@@ -7,6 +7,7 @@ use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\Authmanager;
 use App\Http\Controllers\FreeadsUserController;
 use App\Http\Controllers\Profile_User_Controller;
+use App\Http\Controllers\Profile_prod_Controller;
 
 
 // COSME
@@ -29,7 +30,14 @@ use App\Http\Controllers\NewHomeController;
 
 // tutut
 Route::get('', [NewHomeController::class, 'show']);
+Route::get('profile/createprod', [Profile_User_Controller::class, 'createprod'])->name('profile.createprod');
+Route::post('profile/storeprod', [Profile_User_Controller::class, 'storeprod'])->name('profile.storeprod');
+Route::get('profile/{product}', [Profile_User_Controller::class, 'showprod'])->name('profile.showprod');
+Route::get('profile/editprod/{product}', [Profile_User_Controller::class, 'editprod'])->name('profile.editprod');
+Route::put('profile/editprod/{product}', [Profile_User_Controller::class, 'updateprod'])->name('profile.updateprod');
+Route::delete('profile/{product}', [Profile_User_Controller::class, 'destroyprod'])->name('profile.destroyprod');
 Route::resource('profile', Profile_User_Controller::class);
+Route::resource('profile_prod', Profile_prod_Controller::class);
 
 Route::resource('admin', AdminController::class);
 
