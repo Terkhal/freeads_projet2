@@ -21,9 +21,9 @@
             <ul class="right hide-on-med-and-down">
                 <li><a href="home" class="waves-effect waves-light btn">Home</a></li>
                 <li><a href="login" class="waves-effect waves-light btn">Login</a></li>
-                @if( session('user')->id == true)
+                <!-- @if( session('user')->id == true)
                 <li><a href="../profile" class="waves-effect waves-light btn">Profile</a></li>
-                @endif
+                @endif -->
 
                 <li><a href="../admin" class="waves-effect waves-light btn">Admin</a></li>
             </ul>

@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\Authmanager;
 use App\Http\Controllers\FreeadsUserController;
+use App\Http\Controllers\Profile_User_Controller;
 
 
 // COSME
@@ -15,7 +16,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\NewHomeController;
 
 
-/*
+/*  
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
@@ -27,7 +28,8 @@ use App\Http\Controllers\NewHomeController;
 */
 
 // tutut
-Route::get('home', [NewHomeController::class, 'show']);
+Route::get('/', [NewHomeController::class, 'show']);
+Route::resource('profile', Profile_User_Controller::class);
 
 Route::resource('admin', AdminController::class);
 
@@ -46,10 +48,10 @@ Route::post('picture_upload', [PictureController::class, 'store'])->name('image.
 
 //Seb route
 
-Route::get('/', function () {
+// Route::get('/', function () {
 
-    return view('home');
-})->name('home');
+//     return view('home');
+// })->name('home');
 
 
 //         return view('welcome');
