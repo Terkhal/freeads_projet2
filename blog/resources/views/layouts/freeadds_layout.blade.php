@@ -22,9 +22,12 @@
                 <li><a href="/" class="waves-effect waves-light btn">Home</a></li>
                 <li><a href="/login" class="waves-effect waves-light btn">Login</a></li>
                 @if( session('user')->id == true)
-                <li><a href="../profile" class="waves-effect waves-light btn">Profile</a></li>
+                <li><a href="/profile" class="waves-effect waves-light btn">Profile</a></li>
                 @endif
+                <li><a href="/registration" class="waves-effect waves-light btn">Register</a></li>
                 <li><a href="/admin" class="waves-effect waves-light btn">Admin</a></li>
+                <li><a href="/" class="waves-effect waves-light btn">Logout</a></li>
+
             </ul>
         </div>
     </nav>

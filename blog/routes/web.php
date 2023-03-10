@@ -1,18 +1,20 @@
 <?php
 
 
+use App\Http\Controllers\Authmanager;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\CategoriesController;
-use App\Http\Controllers\Authmanager;
-use App\Http\Controllers\FreeadsUserController;
+
 use App\Http\Controllers\Profile_User_Controller;
 use App\Http\Controllers\Profile_prod_Controller;
+use App\Http\Controllers\PictureController;
+use App\Http\Controllers\ProductController;
 
 
 // COSME
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\PictureController;
+use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\FreeadsUserController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\NewHomeController;
 
@@ -72,3 +74,23 @@ Route::get('/registration', [AuthManager::class, 'registration'])->name('registr
 Route::post('/registration', [AuthManager::class, 'registrationPost'])->name('registration.post');
 Route::get('/logout', [AuthManager::class, 'logout'])->name('logout');
 Route::resource('users', FreeadsUserController::class);
+
+Route::group(['middleware' => ['auth']], function () {
+    /**
+     * Verification Routes
+     */
+    Route::get('/email/verify', 'VerificationController@show')->name('verification.notice');
+    Route::get('/email/verify/{id}/{hash}', 'VerificationController@verify')->name('verification.verify')->middleware(['signed']);
+    Route::post('/email/resend', 'VerificationController@resend')->name('verification.resend');
+});
+
+//only authenticated can access this group
+Route::group(['middleware' => ['auth']], function () {
+    //only verified account can access with this group
+    Route::group(['middleware' => ['verified']], function () {
+        /**
+         * Dashboard Routes
+         */
+        Route::get('/dashboard', 'DashboardController@index')->name('dashboard.index');
+    });
+});

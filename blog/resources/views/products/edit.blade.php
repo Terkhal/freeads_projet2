@@ -48,6 +48,23 @@
                         @enderror
                     </div>
                 </div>
+                <div>
+                <select class="browser-default" name="category_id">
+                            <option value="0"> -- Choose a category -- </option>
+                            @foreach ($categories as $category)
+                            <option value="{{$category->id}}">{{$category->name}}</option>
+                            @endforeach
+                        </select>
+                </div>
+                <div>
+                <select class="browser-default" name="sub_category_id">
+                            <option value="0"> -- Choose a category -- </option>
+                            @foreach ($sub_categories as $sub_category)
+                            <option value="{{$sub_category->id}}">{{$sub_category->name}}</option>
+                            @endforeach
+                        </select>
+                </div>
+                
                 <div style="justify-content: space-between; display: flex;">
                     <a class="btn btn-primary" href="{{ route('products.index') }}" enctype="multipart/form-data">Back</a>
                     <button style="margin: 10px;" type="submit" class="btn btn-primary ml-3">Submit</button>

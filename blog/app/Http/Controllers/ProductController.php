@@ -79,7 +79,12 @@ class ProductController extends Controller
         */
         public function edit(Product $product)
         {
-            return view('products.edit',compact('product'));
+            $products = Product::all();
+            $categories = Categories::all();
+            
+            $categories = Categories::all()->where('is_sub', '=', '0');
+            $sub_categories = Categories::all()->where('is_sub', '=', '1')->where('parent_id', '!=', '0');
+            return view('products.edit',compact('product', 'products', 'categories', 'sub_categories'));
         }
     
         /**
@@ -97,6 +102,8 @@ class ProductController extends Controller
             
             $product->fill($request->post())->save();
     
+
+
             return redirect()->route('products.index')->with('success','Product Has Been updated successfully');
         }
     
