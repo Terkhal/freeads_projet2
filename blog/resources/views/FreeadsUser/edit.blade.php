@@ -26,8 +26,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
                         <strong>User Name:</strong>
-                        <input type="text" name="name" value="{{ $user->name }}" class="form-control"
-                            placeholder="User name">
+                        <input type="text" name="name" value="{{ $user->name }}" class="form-control" placeholder="User name">
                         @error('name')
                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                         @enderror
@@ -37,8 +36,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
                         <strong>User Email:</strong>
-                        <input type="email" name="email" class="form-control" placeholder="User Email"
-                            value="{{ $user->email }}">
+                        <input type="email" name="email" class="form-control" placeholder="User Email" value="{{ $user->email }}">
                         @error('email')
                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                         @enderror
@@ -48,8 +46,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
                         <strong>User password:</strong>
-                        <input type="password" name="password" class="form-control" placeholder="User Password"
-                            value="{{ $user->password }}">
+                        <input type="password" name="password" class="form-control" placeholder="User Password" value="">
                         @error('password')
                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                         @enderror
@@ -59,14 +56,13 @@
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
                         <strong>User Phone number:</strong>
-                        <input type="text" name="phone_number" class="form-control" placeholder="User Phone number"
-                            value="{{ $user->phone_number }}">
+                        <input type="text" name="phone_number" class="form-control" placeholder="User Phone number" value="{{ $user->phone_number }}">
                         @error('nphone_umber')
                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>
-               
+
                 <div style="justify-content: space-between; display: flex;">
                     <a class="btn btn-primary" href="{{ route('users.index') }}" enctype="multipart/form-data">Back</a>
                     <button style="margin: 10px;" type="submit" class="btn btn-primary ml-3" type="submit">Submit</button>

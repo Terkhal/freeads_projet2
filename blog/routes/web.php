@@ -31,7 +31,7 @@ use App\Http\Controllers\NewHomeController;
 */
 
 // tutut
-Route::get('', [NewHomeController::class, 'show']);
+Route::get('', [NewHomeController::class, 'show'])->name('home');
 Route::get('profile/createprod', [Profile_User_Controller::class, 'createprod'])->name('profile.createprod');
 Route::post('profile/storeprod', [Profile_User_Controller::class, 'storeprod'])->name('profile.storeprod');
 Route::get('profile/{product}', [Profile_User_Controller::class, 'showprod'])->name('profile.showprod');

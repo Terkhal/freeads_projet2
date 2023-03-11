@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\User;
 
 use Illuminate\Http\Request;
@@ -13,22 +14,22 @@ use Illuminate\Auth\Events\Registered;
 class FreeadsUserController extends Controller
 {
     /**
-    * Display a listing of the resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        $users = User::orderBy('id','desc')->paginate(5);
+        $users = User::orderBy('id', 'desc')->paginate(5);
         return view('FreeadsUser.index', compact('users'));
     }
 
     /**
-    * Show the form for creating a new resource.
-    * ATTENTION IL VA FALLOIR PEUT ETRE LE REDIRIGER VERS REGISTRATION
-    *
-    * @return \Illuminate\Http\Response
-    */
+     * Show the form for creating a new resource.
+     * ATTENTION IL VA FALLOIR PEUT ETRE LE REDIRIGER VERS REGISTRATION
+     *
+     * @return \Illuminate\Http\Response
+     */
 
     public function create()
     {
@@ -37,11 +38,11 @@ class FreeadsUserController extends Controller
 
 
     /**
-    * Store a newly created resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @return \Illuminate\Http\Response
-    */
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
         $request->validate([
@@ -51,16 +52,16 @@ class FreeadsUserController extends Controller
             'phone_number' => 'required',
         ]);
 
-        $data['name'] = $request->name;
-        $data['email'] = $request->email;
-        $data['password'] = Hash::make($request->password);
-        $data['admin'] = '0';
-        $data['phone_number'] = $request->phone_number;
 
-    
-        
+        $request['password'] = Hash::make($request->password);
+
+        $request['admin'] = '0';
+
+
+
+
         User::create($request->post());
-        
+
         // $user = User::create($data);
         // if(!$user) {
 
@@ -71,63 +72,71 @@ class FreeadsUserController extends Controller
 
 
 
-        return redirect()->route('users.index')->with('success','User has been created successfully.');
+        return redirect()->route('users.index')->with('success', 'User has been created successfully.');
     }
 
 
     /**
-    * Display the specified resource.
-    *
-    * @param  \App\company  $company
-    * @return \Illuminate\Http\Response
-    */
+     * Display the specified resource.
+     *
+     * @param  \App\company  $company
+     * @return \Illuminate\Http\Response
+     */
     public function show(User $user)
     {
-        return view('FreeadsUser.show',compact('user'));
+        return view('FreeadsUser.show', compact('user'));
     }
 
     /**
-    * Show the form for editing the specified resource.
-    *
-    * @param  \App\Company  $company
-    * @return \Illuminate\Http\Response
-    */
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Company  $company
+     * @return \Illuminate\Http\Response
+     */
     public function edit(User $user)
     {
-        return view('FreeadsUser.edit',compact('user'));
+        return view('FreeadsUser.edit', compact('user'));
     }
 
-     /**
-    * Update the specified resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @param  \App\company  $company
-    * @return \Illuminate\Http\Response
-    */
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\company  $company
+     * @return \Illuminate\Http\Response
+     */
     public function update(Request $request, User $user)
     {
         $request->validate([
             'name' => 'required',
             'email' => 'required',
-           // 'address' => 'required',
+            'password' => 'required',
+            // 'address' => 'required',
         ]);
 
+        //checkpassword for no rehash
 
-    $user->fill($request->post())->save();
 
-    return redirect()->route('users.index')->with('success','User Has Been updated successfully');
+
+        $request['password'] = Hash::make($request->password);
+
+
+
+        $user->fill($request->post())->save();
+
+        return redirect()->route('users.index')->with('success', 'User Has Been updated successfully');
     }
 
 
-      /**
-    * Remove the specified resource from storage.
-    *
-    * @param  \App\Company  $company
-    * @return \Illuminate\Http\Response
-    */
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Company  $company
+     * @return \Illuminate\Http\Response
+     */
     public function destroy(User $user)
     {
         $user->delete();
-        return redirect()->route('users.index')->with('success','User has been deleted successfully');
+        return redirect()->route('users.index')->with('success', 'User has been deleted successfully');
     }
 }

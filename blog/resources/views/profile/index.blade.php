@@ -29,7 +29,7 @@
                 <div class="card">
                     <div class="card-image">
                         <img style="width:100%; height:auto;" src="{{ URL::asset($product->image_path) }}">
-                        <span class="card-title">{{ $product->name }}{{ $product->created_by }}</span>
+                        <span class="card-title">{{ $product->name }}</span>
                         <a style="position: absolute; right: 24px; bottom: -29px;" class="btn-floating halfway-fab waves-effect waves-light red"><i style="width: inherit; display: inline-block; text-align: center; color: #fff; font-size: 2.3rem; line-height: 34px;" class="material-icons">+</i></a>
                     </div>
                     <div style="display: flex; justify-content: space-between; padding: 24px;" class="details_card">

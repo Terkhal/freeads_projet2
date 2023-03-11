@@ -30,16 +30,21 @@ class Authmanager extends Controller
     public function loginPost(Request $request)
     {
         $request->validate([
-            // 'name' => 'required',
+            'name' => 'required',
             'password' => 'required',
         ]);
 
         $credentials = $request->only('name', 'password');
         if (Auth::attempt($credentials)) {
-            $userdata = User::where('email', $credentials['name'])->first();
-
+            $userdata = User::where('name', $credentials['name'])->first();
             Session::put('user', $userdata);
+
             Session::save();
+
+
+
+
+
 
 
 
@@ -80,9 +85,9 @@ class Authmanager extends Controller
 
     public function logout()
     {
-        $session::flush();
+        session()->flush();
         Auth::logout();
-        return redirect(route('login'));
+        return redirect(route('home'));
     }
 }
 

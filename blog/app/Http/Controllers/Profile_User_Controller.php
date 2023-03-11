@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Categories;
 use App\Models\User;
+use Illuminate\Support\Facades\Session;
 
 
 
@@ -13,6 +14,7 @@ class Profile_User_Controller extends Controller
 {
     public function index()
     {
+        session();
         $iduser = session('user')->id;
         // dump($iduser);
         // $products = Product::all()->where('$product->category_id', '=', '$category->id');
